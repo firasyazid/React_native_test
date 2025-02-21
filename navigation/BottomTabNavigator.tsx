@@ -3,8 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Dimensions, StyleSheet } from 'react-native';
-import DetailScreen from '../screens/DetailScreen';
-
+ 
 const Tab = createBottomTabNavigator();
 const windowWidth = Dimensions.get("window").width;
 
@@ -37,20 +36,7 @@ const BottomTabNavigator = () => {
           ),
         }}
       /> 
-      <Tab.Screen
-        name="Detail"
-        component={DetailScreen}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <FontAwesome5
-              name="info"
-              size={24}
-              color={focused ? "white" : "gray"}
-              style={iconStyle}
-            />
-          ),
-        }}
-        />
+    
     </Tab.Navigator>
   );
 };
@@ -59,7 +45,7 @@ const styles = StyleSheet.create({
   tabBar: {
     position: "absolute",
     bottom: 10,
-    elevation: 0,
+    elevation: 2,
     marginLeft: windowWidth * 0.2,
     borderRadius: 50,
     width: windowWidth * 0.58,

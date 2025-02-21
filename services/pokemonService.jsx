@@ -11,7 +11,8 @@ export const fetchPokemonData = async (page) => {
           url: item.url,
           sprites: pokemonResponse.data.sprites,
           types: pokemonResponse.data.types,
-        };  
+          stats: pokemonResponse.data.stats,
+         };  
       })
     );
     return results;

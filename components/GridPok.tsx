@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ActivityIndicator, TouchableOpacity, RefreshControl, FlatList, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { fetchPokemonData } from '../services/pokemonService';
 
 interface Pokemon {
@@ -24,13 +25,14 @@ const GridPok: React.FC<GridPokProps> = ({ searchQuery }) => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [refreshing, setRefreshing] = useState(false);
+  const navigation = useNavigation();
 
   const itemsPerPage = 4;
 
   const fetchPokemon = async () => {
     setLoading(true);
     try {
-      const results = await fetchPokemonData(1);  
+      const results = await fetchPokemonData(1);
       setPokemonList(results);
     } catch (error) {
       console.error(error);
@@ -70,7 +72,10 @@ const GridPok: React.FC<GridPokProps> = ({ searchQuery }) => {
             data={displayedPokemon}
             keyExtractor={(item) => item.name}
             renderItem={({ item }) => (
-              <TouchableOpacity style={styles.pokemonCard}>
+              <TouchableOpacity
+                style={styles.pokemonCard}
+                onPress={() => navigation.navigate('Detail', { pokemon: item })}
+              >
                 <View style={styles.imageContainer}>
                   <Image
                     source={{ uri: item.sprites.front_default }}
@@ -182,4 +187,3 @@ const styles = StyleSheet.create({
     color: "#3691cb",
   },
 });
-
