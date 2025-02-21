@@ -164,12 +164,15 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   paginator: {
-         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: 20,
-        top: -40,
-    
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: '#fff',
+    borderTopWidth: 1,
+    borderTopColor: '#ddd',
+    top: -50,
   },
   paginatorButton: {
     padding: 10,
@@ -179,3 +182,4 @@ const styles = StyleSheet.create({
     color: "#3691cb",
   },
 });
+

@@ -11,12 +11,12 @@ export const fetchPokemonData = async (page) => {
           url: item.url,
           sprites: pokemonResponse.data.sprites,
           types: pokemonResponse.data.types,
-        };
+        };  
       })
     );
     return results;
   } catch (error) {
-    console.error('Error fetching Pokémon data:', error);
+    console.error('Error fetching data:', error);
     throw error;
   }
 };

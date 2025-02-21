@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, SafeAreaView, Image } from 'react-native';
+import { View, TextInput, StyleSheet, SafeAreaView, Image, KeyboardAvoidingView } from 'react-native';
 import GridPok from '@/components/GridPok';
 
 const HomeScreen = () => {
@@ -10,7 +10,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} behavior="padding">
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.header}>
           <Image
@@ -24,14 +24,14 @@ const HomeScreen = () => {
             placeholder="Search by name..."
             value={searchQuery}
             onChangeText={handleSearchChange}
-            accessibilityLabel="Search for Pokémon by name"
           />
         </View>
+
         <View style={styles.gridContainer}>
-          <GridPok searchQuery={searchQuery} />
+        <GridPok searchQuery={searchQuery} />
         </View>
       </SafeAreaView>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    padding: 10,
   },
   safeArea: {
     flex: 1,
@@ -56,8 +55,8 @@ const styles = StyleSheet.create({
     height: 70,
   },
   searchContainer: {
-    marginTop: 60,
-    marginBottom: 10,
+     marginBottom: 10,
+    marginHorizontal: 10,
   },
   searchInput: {
     height: 40,
@@ -69,6 +68,5 @@ const styles = StyleSheet.create({
   },
   gridContainer: {
     flex: 1,
-    marginTop: 50,
-  },
+   },
 });
