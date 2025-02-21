@@ -53,10 +53,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#D9D9D9",
     justifyContent: "center",
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 5 },
-    shadowRadius: 5,
+     shadowOpacity: 0.1,
+     shadowRadius: 5,
   },
 
   iconStyle : {

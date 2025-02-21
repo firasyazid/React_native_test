@@ -8,7 +8,6 @@ import { useNavigation } from '@react-navigation/native';
 interface DetailScreenProps {
   route: RouteProp<RootStackParamList, 'Detail'>;
 }
-
 const DetailScreen: React.FC<DetailScreenProps> = ({ route }) => {
   const { pokemon } = route.params;
   const navigation = useNavigation();

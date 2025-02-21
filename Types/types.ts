@@ -1,8 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 
  export type RootStackParamList = {
-  BottomTab: undefined;
-  Detail: { pokemon: Pokemon };
+   Detail: { pokemon: Pokemon };
 };
 
 export interface Pokemon {

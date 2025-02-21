@@ -2,20 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ActivityIndicator, TouchableOpacity, RefreshControl, FlatList, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { fetchPokemonData } from '../services/pokemonService';
-
-interface Pokemon {
-  name: string;
-  url: string;
-  sprites: {
-    front_default: string;
-  };
-  types: Array<{
-    type: {
-      name: string;
-    };
-  }>;
-}
-
+import { Pokemon } from '../Types/types';
+ 
 interface GridPokProps {
   searchQuery: string;
 }
