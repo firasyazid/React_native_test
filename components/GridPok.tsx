@@ -9,7 +9,7 @@ interface GridPokProps {
   searchQuery: string;
 }
 
-const GridPok: React.FC<GridPokProps> = ({ searchQuery }) => {
+const GridPok: React.FC<GridPokProps> = React.memo(({ searchQuery }) => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -18,7 +18,7 @@ const GridPok: React.FC<GridPokProps> = ({ searchQuery }) => {
 
   const itemsPerPage = 4;
 
-   const fetchPokemon = useCallback(async () => {
+  const fetchPokemon = useCallback(async () => {
     setLoading(true);
     try {
       const results = await fetchPokemonData(1);
@@ -29,23 +29,23 @@ const GridPok: React.FC<GridPokProps> = ({ searchQuery }) => {
       setLoading(false);
       setRefreshing(false);
     }
-  }, []);  
+  }, []);
 
-   useEffect(() => {
+  useEffect(() => {
     fetchPokemon();
-  }, [fetchPokemon]); 
+  }, [fetchPokemon]);
 
-   const onRefresh = useCallback(() => {
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
     fetchPokemon();
-  }, [fetchPokemon]);  
+  }, [fetchPokemon]);
 
-   const changePage = useCallback((newPage: number) => {
+  const changePage = useCallback((newPage: number) => {
     if (newPage < 1 || newPage > Math.ceil(pokemonList.length / itemsPerPage) || loading) return;
     setPage(newPage);
-  }, [pokemonList, loading]); 
+  }, [pokemonList, loading]);
 
-   const displayedPokemon = useMemo(() => {
+  const displayedPokemon = useMemo(() => {
     return pokemonList
       .filter((pokemon) => pokemon.name.toLowerCase().includes(searchQuery.toLowerCase()))
       .slice((page - 1) * itemsPerPage, page * itemsPerPage);
@@ -108,7 +108,7 @@ const GridPok: React.FC<GridPokProps> = ({ searchQuery }) => {
       )}
     </View>
   );
-};
+});
 
 export default GridPok;
 
