@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { View, TextInput, StyleSheet, SafeAreaView, Image, KeyboardAvoidingView } from 'react-native';
-import GridPok from '@/components/GridPok';
+import GridPok from '../components/GridPok';
 import debounce from 'lodash.debounce';
 
 const HomeScreen = () => {
@@ -25,7 +25,9 @@ const HomeScreen = () => {
         <View style={styles.header}>
           <Image
             style={styles.logo}
-            source={require('../assets/images/pikachu.png')}
+            source={require('../../assets/images/pikachu.png')}
+            resizeMode="contain"
+
           />
         </View>
         <View style={styles.search}>

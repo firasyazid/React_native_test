@@ -29,8 +29,8 @@ Animated.parallel([
           ]}
         >
             <Image
-                source={require("../assets/images/pikachu.png")}
-                style={styles.logo}
+            source={require('../../assets/images/pikachu.png')}
+            style={styles.logo}
             />
         </Animated.View>
         </View>

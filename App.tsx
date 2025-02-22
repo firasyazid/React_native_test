@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import BottomTabNavigator from './navigation/BottomTabNavigator';
-import DetailScreen from './screens/DetailScreen';
-import { Param } from './Types/types';
-import Splashscreen from './utils/splash';
+import BottomTabNavigator from './app/navigation/BottomTabNavigator';
+import DetailScreen from './app/screens/DetailScreen';
+import { Param } from './app/Types/types';
+import Splashscreen from './app/utils/splash';
 
 
 const Stack = createNativeStackNavigator<Param>();
