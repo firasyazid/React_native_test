@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, TextInput, StyleSheet, SafeAreaView, Image, KeyboardAvoidingView } from 'react-native';
 import GridPok from '@/components/GridPok';
+import debounce from 'lodash.debounce';
 
 const HomeScreen = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [inputValue, setInputValue] = useState('');  
+  const [searchQuery, setSearchQuery] = useState('');  
+
+  const debouncedSearch = useCallback(
+    debounce((text: string) => {
+      setSearchQuery(text);
+    }, 300),
+    []
+  );
 
   const handleSearchChange = (text: string) => {
-    setSearchQuery(text);
+    setInputValue(text);
+    debouncedSearch(text);
   };
+
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <SafeAreaView style={styles.safeArea}>
@@ -21,12 +32,12 @@ const HomeScreen = () => {
           <TextInput
             style={styles.searchInput}
             placeholder="Search by name..."
-            value={searchQuery}
+            value={inputValue}
             onChangeText={handleSearchChange}
           />
         </View>
         <View style={styles.gridContainer}>
-        <GridPok searchQuery={searchQuery} />
+          <GridPok searchQuery={searchQuery} />
         </View>
       </SafeAreaView>
     </KeyboardAvoidingView>
@@ -53,8 +64,8 @@ const styles = StyleSheet.create({
     height: 70,
   },
   searchContainer: {
-     marginBottom: 10,
-      marginHorizontal: 10,
+    marginBottom: 10,
+    marginHorizontal: 10,
   },
   searchInput: {
     height: 40,
@@ -66,5 +77,5 @@ const styles = StyleSheet.create({
   },
   gridContainer: {
     flex: 1,
-   },
+  },
 });

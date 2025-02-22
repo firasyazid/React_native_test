@@ -40,10 +40,14 @@ const GridPok: React.FC<GridPokProps> = React.memo(({ searchQuery }) => {
     fetchPokemon();
   }, [fetchPokemon]);
 
+
+
   const changePage = useCallback((newPage: number) => {
     if (newPage < 1 || newPage > Math.ceil(pokemonList.length / itemsPerPage) || loading) return;
     setPage(newPage);
   }, [pokemonList, loading]);
+
+
 
   const displayedPokemon = useMemo(() => {
     return pokemonList
@@ -54,9 +58,11 @@ const GridPok: React.FC<GridPokProps> = React.memo(({ searchQuery }) => {
   return (
     <View style={styles.container}>
       {loading ? (
-        <ActivityIndicator size="large" color="#96e6a1" />
+        <ActivityIndicator size="large" color="#3691cb" />
       ) : (
         <>
+
+
           <FlatList
             data={displayedPokemon}
             keyExtractor={(item) => item.name}
@@ -79,14 +85,19 @@ const GridPok: React.FC<GridPokProps> = React.memo(({ searchQuery }) => {
               <RefreshControl
                 refreshing={refreshing}
                 onRefresh={onRefresh}
-                colors={["#6A80B9"]}
-                tintColor="#96e6a1"
-              />
+                colors={["#3691cb"]}
+               />
             }
             showsVerticalScrollIndicator={false}
             numColumns={2}
             columnWrapperStyle={styles.row}
           />
+
+
+
+
+
+
           <View style={styles.paginator}>
             <TouchableOpacity
               style={styles.paginatorButton}
