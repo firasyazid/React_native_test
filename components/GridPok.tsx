@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { View, Text, Image, ActivityIndicator, TouchableOpacity, RefreshControl, FlatList, StyleSheet } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { Param } from '../Types/types';
@@ -14,11 +14,11 @@ const GridPok: React.FC<GridPokProps> = ({ searchQuery }) => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [refreshing, setRefreshing] = useState(false);
-  const navigation = useNavigation<NavigationProp<Param>>();  
+  const navigation = useNavigation<NavigationProp<Param>>();
 
   const itemsPerPage = 4;
 
-  const fetchPokemon = async () => {
+   const fetchPokemon = useCallback(async () => {
     setLoading(true);
     try {
       const results = await fetchPokemonData(1);
@@ -29,27 +29,27 @@ const GridPok: React.FC<GridPokProps> = ({ searchQuery }) => {
       setLoading(false);
       setRefreshing(false);
     }
-  };
+  }, []);  
 
-  useEffect(() => {
+   useEffect(() => {
     fetchPokemon();
-  }, []);
+  }, [fetchPokemon]); 
 
-  const onRefresh = () => {
+   const onRefresh = useCallback(() => {
     setRefreshing(true);
     fetchPokemon();
-  };
+  }, [fetchPokemon]);  
 
-  const changePage = (newPage: number) => {
+   const changePage = useCallback((newPage: number) => {
     if (newPage < 1 || newPage > Math.ceil(pokemonList.length / itemsPerPage) || loading) return;
     setPage(newPage);
-  };
+  }, [pokemonList, loading]); 
 
-  const displayedPokemon = pokemonList
-    .filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    .slice((page - 1) * itemsPerPage, page * itemsPerPage);
+   const displayedPokemon = useMemo(() => {
+    return pokemonList
+      .filter((pokemon) => pokemon.name.toLowerCase().includes(searchQuery.toLowerCase()))
+      .slice((page - 1) * itemsPerPage, page * itemsPerPage);
+  }, [pokemonList, searchQuery, page]);
 
   return (
     <View style={styles.container}>
@@ -63,7 +63,7 @@ const GridPok: React.FC<GridPokProps> = ({ searchQuery }) => {
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={styles.pokemonCard}
-                onPress={() => navigation.navigate('Detail', { pokemon: item })}  
+                onPress={() => navigation.navigate('Detail', { pokemon: item })}
               >
                 <View style={styles.imageContainer}>
                   <Image
@@ -112,9 +112,7 @@ const GridPok: React.FC<GridPokProps> = ({ searchQuery }) => {
 
 export default GridPok;
 
-// Styles remain unchanged
-
-const styles = StyleSheet.create({
+ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
