@@ -1,9 +1,7 @@
 
 import {
   View,
-  Image,
-  StyleSheet,
-  Animated
+  Image, StyleSheet, Animated
 } from "react-native";
 
 const splashscreen = () => {
@@ -63,7 +61,7 @@ const styles = StyleSheet.create({
       height: 200,
     },
      
-    
+
   });
   
 export default splashscreen;

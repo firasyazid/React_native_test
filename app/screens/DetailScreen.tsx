@@ -19,7 +19,6 @@ const DetailScreen: React.FC<DetailScreenProps> = ({ route }) => {
       <Image source={{ uri: pokemon.sprites.front_default }} style={styles.image} />
       <Text style={styles.name}>{pokemon.name}</Text>
       <Text style={styles.type}>Type: {pokemon.types.map((typeInfo) => typeInfo.type.name).join(', ')}</Text>
-
        <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Statistics:</Text>
         {pokemon.stats && pokemon.stats.map((stat, index) => (
@@ -84,12 +83,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     textAlign: 'center',
   },
-  ability: {
-    fontSize: 16,
-    color: '#666',
-    marginVertical: 5,
-    textAlign: 'center',
-  },
+   
 });
 
 export default DetailScreen;

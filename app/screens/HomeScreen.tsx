@@ -28,7 +28,7 @@ const HomeScreen = () => {
             source={require('../assets/images/pikachu.png')}
           />
         </View>
-        <View style={styles.searchContainer}>
+        <View style={styles.search}>
           <TextInput
             style={styles.searchInput}
             placeholder="Search by name..."
@@ -36,7 +36,7 @@ const HomeScreen = () => {
             onChangeText={handleSearchChange}
           />
         </View>
-        <View style={styles.gridContainer}>
+        <View style={styles.grid}>
           <GridPok searchQuery={searchQuery} />
         </View>
       </SafeAreaView>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
   },
-  searchContainer: {
+  search: {
     marginBottom: 10,
     marginHorizontal: 10,
   },
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10,
   },
-  gridContainer: {
+  grid: {
     flex: 1,
   },
 });
