@@ -1,11 +1,11 @@
 
 import {
-    View,
-    Image,
-    StyleSheet,
-    Animated
+  View,
+  Image,
+  StyleSheet,
+  Animated
 } from "react-native";
-  
+
 const splashscreen = () => {
 const imagePosition = new Animated.Value(-100);
 Animated.parallel([
@@ -17,8 +17,6 @@ Animated.parallel([
     ]).start();
 
     return (
-
-
         <View style={styles.container}>
         <Animated.View
           style={[
@@ -42,7 +40,6 @@ Animated.parallel([
     );
 }
 
-
 const styles = StyleSheet.create({
     safeArea: {
       flex: 1,
@@ -51,7 +48,6 @@ const styles = StyleSheet.create({
     keyboardContainer: {
       flex: 1,
     },
-   
     container: {
       flex: 1,
       alignItems: "center",
@@ -63,8 +59,8 @@ const styles = StyleSheet.create({
       marginTop: 220,
     },
     logo: {
-      width: 230,
-      height: 230,
+      width: 200,
+      height: 200,
     },
      
     

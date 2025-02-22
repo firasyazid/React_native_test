@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ActivityIndicator, TouchableOpacity, RefreshControl, FlatList, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { Param } from '../Types/types';
 import { fetchPokemonData } from '../services/pokemonService';
 import { Pokemon } from '../Types/types';
- 
+
 interface GridPokProps {
   searchQuery: string;
 }
@@ -13,7 +14,7 @@ const GridPok: React.FC<GridPokProps> = ({ searchQuery }) => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [refreshing, setRefreshing] = useState(false);
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<Param>>();  
 
   const itemsPerPage = 4;
 
@@ -62,7 +63,7 @@ const GridPok: React.FC<GridPokProps> = ({ searchQuery }) => {
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={styles.pokemonCard}
-                onPress={() => navigation.navigate('Detail', { pokemon: item })}
+                onPress={() => navigation.navigate('Detail', { pokemon: item })}  
               >
                 <View style={styles.imageContainer}>
                   <Image
@@ -110,6 +111,8 @@ const GridPok: React.FC<GridPokProps> = ({ searchQuery }) => {
 };
 
 export default GridPok;
+
+// Styles remain unchanged
 
 const styles = StyleSheet.create({
   container: {

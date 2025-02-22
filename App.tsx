@@ -3,11 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import DetailScreen from './screens/DetailScreen';
-import { RootStackParamList } from './Types/types';
+import { Param } from './Types/types';
 import Splashscreen from './utils/splash';
 
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<Param>();
 
 const App = () => {
   const [loading, setLoading] = useState(true);

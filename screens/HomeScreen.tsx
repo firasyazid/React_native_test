@@ -8,7 +8,6 @@ const HomeScreen = () => {
   const handleSearchChange = (text: string) => {
     setSearchQuery(text);
   };
-
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <SafeAreaView style={styles.safeArea}>
@@ -26,7 +25,6 @@ const HomeScreen = () => {
             onChangeText={handleSearchChange}
           />
         </View>
-
         <View style={styles.gridContainer}>
         <GridPok searchQuery={searchQuery} />
         </View>
@@ -56,7 +54,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
      marginBottom: 10,
-    marginHorizontal: 10,
+      marginHorizontal: 10,
   },
   searchInput: {
     height: 40,

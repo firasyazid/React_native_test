@@ -1,17 +1,16 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
-import { RootStackParamList } from '../Types/types';
+import { Param } from '../Types/types';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 interface DetailScreenProps {
-  route: RouteProp<RootStackParamList, 'Detail'>;
+  route: RouteProp<Param, 'Detail'>;
 }
 const DetailScreen: React.FC<DetailScreenProps> = ({ route }) => {
   const { pokemon } = route.params;
   const navigation = useNavigation();
-
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
@@ -29,8 +28,6 @@ const DetailScreen: React.FC<DetailScreenProps> = ({ route }) => {
           </Text>
         ))}
       </View>
-
-       
     </View>
   );
 };

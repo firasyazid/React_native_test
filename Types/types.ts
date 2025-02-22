@@ -1,8 +1,9 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 
- export type RootStackParamList = {
-   Detail: { pokemon: Pokemon };
-};
+ export type Param = {
+   BottomTab: undefined;  
+  Detail: { pokemon: Pokemon };
+ };
 
 export interface Pokemon {
   name: string;
@@ -21,7 +22,6 @@ export interface Pokemon {
     };
     base_stat: number;
   }>;
-  
 }
 
- export type DetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Detail'>;
+export type DetailScreenNavigation= StackNavigationProp<Param, 'Detail'>;
