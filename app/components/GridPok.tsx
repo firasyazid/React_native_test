@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { View, Text, Image, ActivityIndicator, TouchableOpacity, RefreshControl, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, RefreshControl, FlatList, StyleSheet } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { Param } from '../Types/types';
 import { fetchPokemonData } from '../services/pokemonService';
@@ -9,8 +9,9 @@ interface GridPokProps {
   searchQuery: string;
 }
 
-const GridPok: React.FC<GridPokProps> = React.memo(({ searchQuery }) => {
-  const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
+const GridPok = React.memo(({ searchQuery }: GridPokProps) => { 
+   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
+
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [refreshing, setRefreshing] = useState(false);
@@ -56,12 +57,8 @@ const GridPok: React.FC<GridPokProps> = React.memo(({ searchQuery }) => {
   }, [pokemonList, searchQuery, page]);
 
   return (
-    <View style={styles.container}>
-      {loading ? (
-        <ActivityIndicator size="large" color="#3691cb" />
-      ) : (
-        <>
-
+      <View style={styles.container}>
+    
 
           <FlatList
             data={displayedPokemon}
@@ -81,6 +78,7 @@ const GridPok: React.FC<GridPokProps> = React.memo(({ searchQuery }) => {
                 </View>
               </TouchableOpacity>
             )}
+            
             refreshControl={
               <RefreshControl
                 refreshing={refreshing}
@@ -90,15 +88,10 @@ const GridPok: React.FC<GridPokProps> = React.memo(({ searchQuery }) => {
             }
             showsVerticalScrollIndicator={false}
             numColumns={2}
-            columnWrapperStyle={styles.row}
+            columnWrapperStyle={styles.grid}
           />
 
-
-
-
-
-
-          <View style={styles.paginator}>
+      <View style={styles.paginator}>
             <TouchableOpacity
               style={styles.paginatorButton}
               onPress={() => changePage(page - 1)}
@@ -114,26 +107,29 @@ const GridPok: React.FC<GridPokProps> = React.memo(({ searchQuery }) => {
             >
               <Text style={styles.paginatorText}>Next</Text>
             </TouchableOpacity>
-          </View>
-        </>
-      )}
-    </View>
+        </View>
+        
+         </View>
   );
 });
 
 export default GridPok;
 
  const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     backgroundColor: "#fff",
     padding: 10,
   },
-  row: {
+
+
+  grid: {
     flex: 1,
     justifyContent: "space-between",
     marginBottom: 10,
   },
+
   pokemonCard: {
     backgroundColor: "#FBFBFB",
     borderRadius: 14,
@@ -145,7 +141,11 @@ export default GridPok;
     shadowOffset: { width: 0, height: 4 },
     shadowRadius: 5,
     elevation: 3,
+    marginBottom: 20,
   },
+
+
+
   imageContainer: {
     alignItems: "center",
   },
@@ -154,6 +154,8 @@ export default GridPok;
     height: 100,
     borderRadius: 10,
   },
+
+
   pokemonName: {
     fontSize: 14,
     color: "#3691cb",
@@ -165,23 +167,30 @@ export default GridPok;
     fontSize: 12,
     color: "#555",
     textAlign: "center",
-    fontFamily: 'Parkinsans',
-    marginTop: 2,
+     marginTop: 2,
   },
-  paginator: {
+ 
+
+   paginator: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: '#fff',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    backgroundColor: "#FFFFFF",
     borderTopWidth: 1,
-    borderTopColor: '#ddd',
-    top: -50,
-  },
+    borderTopColor: "#E5E7EB",  
+    borderRadius: 12,  
+    marginHorizontal: 8,
+     elevation: 2,
+     bottom: 60,
+    },
+
   paginatorButton: {
     padding: 10,
   },
+
+
   paginatorText: {
     fontSize: 13,
     color: "#3691cb",

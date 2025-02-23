@@ -26,7 +26,7 @@ const App = () => {
   
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="BottomTab">
+      <Stack.Navigator  >
         <Stack.Screen
           name="BottomTab"
           component={BottomTabNavigator}

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, TextInput, StyleSheet, SafeAreaView, Image, KeyboardAvoidingView } from 'react-native';
+import { View, TextInput, StyleSheet, SafeAreaView, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import GridPok from '../components/GridPok';
 import debounce from 'lodash.debounce';
 
@@ -20,8 +20,11 @@ const HomeScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <SafeAreaView style={styles.safeArea}>
+<KeyboardAvoidingView
+  style={styles.container}
+  behavior={Platform.OS === 'ios' ? 'padding' : 'height'}> 
+
+     <SafeAreaView style={styles.safeArea}>
         <View style={styles.header}>
           <Image
             style={styles.logo}

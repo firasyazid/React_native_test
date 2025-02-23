@@ -6,7 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
  };
 
 export interface Pokemon {
-  name: string;
+    name: string;
   url: string;
   sprites: {
     front_default: string;
@@ -20,7 +20,7 @@ export interface Pokemon {
     stat: {
       name: string;
     };
-    base_stat: number;
+     base_stat: number;
   }>;
 }
 

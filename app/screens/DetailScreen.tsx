@@ -9,19 +9,18 @@ interface DetailScreenProps {
   route: RouteProp<Param, 'Detail'>;
 }
 
-const DetailScreen: React.FC<DetailScreenProps> = ({ route }) => {
-  const { pokemon } = route.params;
+const DetailScreen = ({ route }: DetailScreenProps) => { const { pokemon } = route.params;
   const navigation = useNavigation();
 
   return (
     <View
-       style={styles.container}
-    >
+       style={styles.container}>
       <TouchableOpacity 
         style={styles.backButton} 
         onPress={() => navigation.goBack()}
-        activeOpacity={0.7}
-      >
+         >
+
+
         <FontAwesome5 name="arrow-left" size={15} color="#ffffff" />
       </TouchableOpacity>
       
@@ -33,23 +32,27 @@ const DetailScreen: React.FC<DetailScreenProps> = ({ route }) => {
         />
       </View>
 
-      <View style={styles.contentCard}>
+      <View style={styles.Card}>
         <Text style={styles.name}>{pokemon.name}</Text>
         <Text style={styles.type}>
           Type: {pokemon.types.map((typeInfo) => typeInfo.type.name).join(', ')}
         </Text>
         
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Statistics</Text>
-          <View style={styles.statsGrid}>
+          <Text style={styles.Title}>Statistics</Text>
+
+
+          <View style={styles.Grid}>
             {pokemon.stats && pokemon.stats.map((stat, index) => (
               <View key={index} style={styles.statCard}>
-                <Text style={styles.statValue}>{stat.base_stat}</Text>
-                <Text style={styles.statName}>{stat.stat.name}</Text>
+                <Text style={styles.Value}>{stat.base_stat}</Text>
+                <Text style={styles.Name}>{stat.stat.name}</Text>
               </View>
             ))}
           </View>
+
         </View>
+
       </View>
     </View>
   );
@@ -60,6 +63,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 60,
   },
+
   backButton: {
     position: 'absolute',
     top: 50,
@@ -70,11 +74,14 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 5,
   },
+
   imageContainer: {
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 30,
   },
+
+
   image: {
     width: 180,
     height: 180,
@@ -87,7 +94,9 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 5,
   },
-  contentCard: {
+
+
+   Card: {
     flex: 1,
     backgroundColor: '#ffffff',
     borderTopLeftRadius: 30,
@@ -99,6 +108,8 @@ const styles = StyleSheet.create({
     shadowRadius: 20,
     elevation: 10,
   },
+
+
   name: {
     fontSize: 25,
     fontWeight: '500',
@@ -107,6 +118,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textAlign: 'center',
   },
+
+
   type: {
     fontSize: 16,
     color: '#666',
@@ -115,10 +128,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '500',
   },
+
+
   section: {
     flex: 1,
   },
-  sectionTitle: {
+  Title: {
     fontSize: 22,
     fontWeight: '500',
     color: '#3691cb',
@@ -126,12 +141,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     letterSpacing: 0.5,
   },
-  statsGrid: {
+
+
+  Grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     gap: 15,
   },
+
+
+  
   statCard: {
     backgroundColor: '#f8f9fa',
     borderRadius: 12,
@@ -144,13 +164,16 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 3,
   },
-  statValue: {
+
+  Value: {
     fontSize: 20,
     fontWeight: '500',
     color: '#3691cb',
     marginBottom: 5,
   },
-  statName: {
+
+
+  Name: {
     fontSize: 12,
     color: '#666',
     textTransform: 'capitalize',

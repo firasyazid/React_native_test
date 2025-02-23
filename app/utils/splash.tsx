@@ -51,11 +51,13 @@ const styles = StyleSheet.create({
       alignItems: "center",
       backgroundColor: "white",
     },
+    
     imageContainer: {
       justifyContent: "center",
       alignItems: "center",
       marginTop: 220,
     },
+
     logo: {
       width: 200,
       height: 200,
