@@ -11,7 +11,6 @@ const BottomTabNavigator = () => {
 
     const iconStyle = styles.iconStyle;
   
-
   return (
     <Tab.Navigator
       screenOptions={{

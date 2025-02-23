@@ -10,9 +10,9 @@ API: PokéAPI
 ## Prerequisites
 Before you begin, ensure you have the following installed:
 
-Node.js 
-npm or Yarn
-Expo CLI
+Node.js ,
+npm or Yarn,
+Expo CLI,
 Expo Go app on your mobile device 
 
 ##  Installation Instructions
