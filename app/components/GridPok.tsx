@@ -35,6 +35,9 @@ const GridPok = React.memo(({ searchQuery }: GridPokProps) => {
   useEffect(() => {
     fetchPokemon();
   }, [fetchPokemon]);
+  useEffect(() => {
+    setPage(1);
+  }, [searchQuery]);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -49,12 +52,13 @@ const GridPok = React.memo(({ searchQuery }: GridPokProps) => {
   }, [pokemonList, loading]);
 
 
-
   const displayedPokemon = useMemo(() => {
     return pokemonList
       .filter((pokemon) => pokemon.name.toLowerCase().includes(searchQuery.toLowerCase()))
       .slice((page - 1) * itemsPerPage, page * itemsPerPage);
   }, [pokemonList, searchQuery, page]);
+
+  
 
   return (
       <View style={styles.container}>
